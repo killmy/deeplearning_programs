@@ -36,3 +36,14 @@ randomsearch.py
 ##### onecyclelr
 循环学习率
 main.py
+
+### codelibrary
+codelibrary.py代码库
+
+### 教程链接
+https://github.com/yunjey/pytorch-tutorial 
+https://github.com/zergtant/pytorch-handbook
+https://github.com/chenyuntc/pytorch-book/blob/master/chapter03-tensor_and_autograd/Tensor.ipynb
+
+### attention
+前面几个程序在win10环境下进行编写的
