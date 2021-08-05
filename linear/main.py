@@ -31,7 +31,6 @@ if __name__ == "__main__":
     # 是否加载提前训练的模型
     premodel = 1
     # model
-    
     if premodel == 0:
         model = Model.LinearModel().to(device)
     elif premodel == 1:
@@ -40,9 +39,11 @@ if __name__ == "__main__":
             model.load_state_dict(torch.load('./linear/params.ckpt'))
         elif os.path.exists('./linear/model.ckpt'):
             model = torch.load('./linear/model.ckpt').to(device)
-    model = nn.Linear(1,1).to(device=device)
-    model = Model.Linear_Model().to(device)
-    loss and optimizer
+    # model = nn.Linear(1,1).to(device=device)
+    # model = Model.Linear_Model().to(device)
+    # logger
+    logger = v.TVisualizationTrain('./linear/log/')
+    # loss and optimizer
     criterion = nn.MSELoss()
     optimizer = torch.optim.SGD(model.parameters(),lr=lr)
     total_step = len(train_data)*epochs
@@ -65,6 +66,9 @@ if __name__ == "__main__":
             if (i+1) % len(train_loader)==0:
                 print('Epoch [{}/{}], Step [{}/{}], Loss: {:.4f}'
                         .format(epoch+1,epochs,global_item_num,total_step,loss.item()))
+                logger.add_scalar(global_item_num,train_loss=loss.item())
+                logger.add_image('images',images,12,global_item_num)
+                logger.add_histogram('param',model,global_item_num)
     model.eval()
     for images,labels in train_loader:
         model = model.cpu()
