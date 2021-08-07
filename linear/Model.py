@@ -13,7 +13,7 @@ class LinearModel(nn.Module):
         return out
 if __name__ == "__main__":
     import sys
-    # sys.path.append('E:/deeplearning_programs/')
+    sys.path.append('/media/g/学习资料盘/deeplearning_programs/')
     import data as d
     import Visualization.visualization as v
     model  = LinearModel()
