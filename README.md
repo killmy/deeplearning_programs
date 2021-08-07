@@ -50,3 +50,6 @@ https://github.com/chenyuntc/pytorch-book/blob/master/chapter03-tensor_and_autog
 
 ### 一些cmd
 tensorboard --logdir="./data/log" 打开tensorboard
+
+### 数据集
+有必要收集数据集并且给出数据集读写库
