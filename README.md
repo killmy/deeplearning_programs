@@ -47,3 +47,6 @@ https://github.com/chenyuntc/pytorch-book/blob/master/chapter03-tensor_and_autog
 
 ### attention
 前面几个程序在win10环境下进行编写的
+
+### 一些cmd
+tensorboard --logdir="./data/log" 打开tensorboard
