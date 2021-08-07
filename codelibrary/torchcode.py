@@ -1,5 +1,6 @@
 # coding:utf-8
 # some universal programs
+from typing import Any, Tuple
 import  torch
 import os
 # 加载设备单GPU
@@ -26,3 +27,45 @@ class LoadModel():
         else:
             print('no model can be loaded,please check the path')
             return 0
+
+# 分类准确率预测
+class ClassAcc():
+    def __init__(self) -> None:
+        pass
+    def predict(self,model,loader,device)->Tuple[Any,Any]:
+        model.eval()
+        correct = 0
+        total = 0
+        for images,labels in loader:
+            images = images.to(device)
+            labels = labels.to(device)
+            outputs = model(images)
+            _,predicted = torch.max(outputs,1)
+            total +=labels.size(0)
+            correct += (predicted == labels).sum().item()
+        return correct,total
+class ClassAccTwo():
+    def __init__(self) -> None:
+        pass
+    def predict(self,model,images,labels,device)->Tuple[Any,Any]:
+        model.eval()
+        correct = 0
+        total = 0
+        images = images.to(device)
+        labels = labels.to(device)
+        outputs = model(images)
+        _,predicted = torch.max(outputs,1)
+        total +=labels.size(0)
+        correct += (predicted == labels).sum().item()
+        return correct,total
+
+class classPredict():
+    def __init__(self) -> None:
+        pass
+    def predict(self,model,images,device)->Any:
+        model.eval()
+        images = images.to(device)
+        outputs = model(images)
+        _,predicted = torch.max(outputs,1)
+        return predicted
+
