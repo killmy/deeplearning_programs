@@ -12,6 +12,7 @@ import time
 class HVisualizationModel():
     'simply show model'
     def __init__(self,model,data,path,theme) -> None:
+        'model,data,path,theme'
         self.vis_graph = h.build_graph(model,data)
         self.vis_graph.theme = h.graph.THEMES[theme].copy()
         self.path = path
