@@ -22,6 +22,7 @@ class HVisualizationModel():
 class TVisualizationModel():
     'show model'
     def __init__(self,model,x_data,format,path) -> None:
+        'format 为图片的格式，如png'
         self.model = model
         self.x_data = x_data.requires_grad_(True) 
         self.y = self.model(self.x_data)
