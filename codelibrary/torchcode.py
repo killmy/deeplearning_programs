@@ -34,29 +34,33 @@ class ClassAcc():
         pass
     def predict(self,model,loader,device)->Tuple[Any,Any]:
         model.eval()
-        correct = 0
-        total = 0
-        for images,labels in loader:
-            images = images.to(device)
-            labels = labels.to(device)
-            outputs = model(images)
-            _,predicted = torch.max(outputs,1)
-            total +=labels.size(0)
-            correct += (predicted == labels).sum().item()
+        with torch.no_grad():
+            correct = 0
+            total = 0
+            for images,labels in loader:
+                images = images.to(device)
+                labels = labels.to(device)
+                outputs = model(images)
+                _,predicted = torch.max(outputs,1)
+                total +=labels.size(0)
+                correct += (predicted == labels).sum().item()
+        # model.train()
         return correct,total
 class ClassAccTwo():
     def __init__(self) -> None:
         pass
     def predict(self,model,images,labels,device)->Tuple[Any,Any]:
         model.eval()
-        correct = 0
-        total = 0
-        images = images.to(device)
-        labels = labels.to(device)
-        outputs = model(images)
-        _,predicted = torch.max(outputs,1)
-        total +=labels.size(0)
-        correct += (predicted == labels).sum().item()
+        with torch.no_grad():
+            correct = 0
+            total = 0
+            images = images.to(device)
+            labels = labels.to(device)
+            outputs = model(images)
+            _,predicted = torch.max(outputs,1)
+            total +=labels.size(0)
+            correct += (predicted == labels).sum().item()
+        # model.train()
         return correct,total
 
 class classPredict():
@@ -64,8 +68,9 @@ class classPredict():
         pass
     def predict(self,model,images,device)->Any:
         model.eval()
-        images = images.to(device)
-        outputs = model(images)
-        _,predicted = torch.max(outputs,1)
+        with torch.no_grad():
+            images = images.to(device)
+            outputs = model(images)
+            _,predicted = torch.max(outputs,1)
         return predicted
 
